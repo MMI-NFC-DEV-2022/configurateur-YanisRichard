@@ -11,10 +11,12 @@ withDefaults(defineProps<ChaussureImage>(), {
 </script>
 
 <template>
-    <div>
+    <div class="relative">
         <img :src="`/images/${orientation}/base.png`" class="h-auto w-full" />
-        <img :src="`/images/${orientation}/bandes-${bandes}.png`" 
+        <img 
+        :src="`/images/${orientation}/bandes-${bandes}.png`" 
         class= "absolute top-0 left-0 h-auto w-full"
         v-if="orientation !== 'derriere'">
+        
     </div>
 </template>

@@ -35,6 +35,7 @@ const chaussure=ref<Chaussure>({});
             type="select"
             :options="couleursNoms"
             />
+            
         </FormKit>
     </div>
 </template>
