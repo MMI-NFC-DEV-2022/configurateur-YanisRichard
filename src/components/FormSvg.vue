@@ -4,12 +4,17 @@ import { ref } from 'vue';
 import SvgProfil from './SvgProfil.vue';
 import SvgDessus from './SvgDessus.vue';
 
-const chaussure = ref<ChaussureSvg>({});
+const props = defineProps<{
+  data?: ChaussureSvg;
+  id?: string;
+}>();
+
+const chaussure = ref<ChaussureSvg>(props.data ?? {});
 </script>
 
 <template>
     <div class="p-2">
-        <ul class="flex gap-1">
+        <ul class="flex gap-10">
             <li><a href="#profil">Profil</a></li>
             <li><a href="#dessus">Dessus</a></li>
         </ul>
