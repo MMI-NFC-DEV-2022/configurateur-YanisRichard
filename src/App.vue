@@ -15,6 +15,8 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/quartiers">Quartiers</RouterLink>
       <RouterLink to="/quartiers/edit/[[id]]">Formulaire Quartier</RouterLink> -->
       <RouterLink to="/formchaussure">FormChaussure</RouterLink>
+      <RouterLink to="/formulaireimages">FormImages</RouterLink>
+
 
     </nav>
   </header>
