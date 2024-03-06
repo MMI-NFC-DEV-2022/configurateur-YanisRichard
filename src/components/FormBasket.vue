@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { colors, type Basket } from '@/types';
+import { colors, type Basket, materiaux } from '@/types';
 import { ref } from 'vue';
 import SvgProfil from './BasketProfil.vue';
 import SvgDessus from './BasketDessus.vue';
@@ -177,6 +177,13 @@ const chaussure = ref<Basket>(props.data ?? {});
                     <span class="sr-only">{{ context.option.label }}</span>
             </template>
         </FormKit>
+        <FormKit
+        name="materiau"
+        label="materiau"
+        value="Cuir"
+        type="select"
+        :options="materiaux"
+        ></FormKit>
     </FormKit>
 
 </template>./BasketProfil.vue@/types
