@@ -1,4 +1,5 @@
 export interface Basket {
+  id?: string;
   semelle?: string;
   empeigne?: string;
   pointe?: string;

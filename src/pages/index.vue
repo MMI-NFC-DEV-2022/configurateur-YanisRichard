@@ -2,8 +2,10 @@
 <script setup lang="ts">
 import BasketProfil from "@/components/BasketProfil.vue";
 import type { Basket } from "@/types";
+import Id from "./quartiers/edit/[[id]].vue";
 const exemples: Basket[] =[
 {
+  id:"1",
   semelle: "#FF0000",
   empeigne: "#FFFFFF",
   pointe: "#FFFFFF",
@@ -15,6 +17,7 @@ const exemples: Basket[] =[
 },
 
  {
+  id:"2",
   semelle: "#00FF00",
   empeigne: "#F00FFF",
   pointe: "#FF00FF",
@@ -33,12 +36,13 @@ const exemples: Basket[] =[
     <div class="flex flex-wrap gap-2">
       <div class="w-64">
         <RouterLink
+          v-for="(exemple,i) in exemples" v-bind:key="i"
           :to="{
             name: '/basket/exemple/[data]',
-            params: { data: JSON.stringify(exemples) },
+            params: { data: JSON.stringify(exemple) },
           }"
         >
-          <BasketProfil class="w-64" v-for="exemple in exemples" v-bind:key="trimestre" v-bind="exemple"/>
+          <BasketProfil class="w-64" v-bind="exemple"/>
         </RouterLink>
       </div>
     </div>
