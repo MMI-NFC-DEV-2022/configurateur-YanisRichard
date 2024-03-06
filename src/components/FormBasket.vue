@@ -3,6 +3,9 @@ import { colors, type Basket, materiaux } from '@/types';
 import { ref } from 'vue';
 import SvgProfil from './BasketProfil.vue';
 import SvgDessus from './BasketDessus.vue';
+import { useRoute } from 'vue-router/auto'
+import { supabase } from "@/supabase";
+const route = useRoute('/basket/edit/[[id]]')
 
 const props = defineProps<{
   data?: Basket;
@@ -10,6 +13,27 @@ const props = defineProps<{
 }>();
 
 const chaussure = ref<Basket>(props.data ?? {});
+
+async function upsertBasket(dataForm, node) {
+ const { data, error } = await supabase.from("Basket").upsert(dataForm).select("id");
+ if (error) node.setErrors([error.message])
+ else {
+console.log("data : ", data)}
+}
+
+if (props.id !== undefined) {
+    console.log(props.id);
+    if (route.params.id) {
+ // On charge les données de la basket
+ let { data, error } = await supabase
+ .from("Basket")
+ .select("*")
+ .eq("id", route.params.id);
+ if (error) console.log("n'a pas pu charger la table Basket :", error);
+ else chaussure.value = (data as any[])[0];
+}
+}
+
 </script>
 
 <template>
@@ -184,6 +208,12 @@ const chaussure = ref<Basket>(props.data ?? {});
         type="select"
         :options="materiaux"
         ></FormKit>
+        <FormKit 
+            type="form" 
+            v-model="basket"
+            :submit-attrs="{ classes: { input: 'bg-red-300 p-1 rounded' } }"
+            @submit="upsertBasket"
+        >
     </FormKit>
 
 </template>./BasketProfil.vue@/types

@@ -2,29 +2,16 @@
 <script setup lang="ts">
 import BasketProfil from "@/components/BasketProfil.vue";
 import type { Basket } from "@/types";
-const exemples: Basket[] =[
-{
-  semelle: "#FF0000",
-  empeigne: "#FFFFFF",
-  pointe: "#FFFFFF",
-  oeillet: "#FFFFFF",
-  bande: "#00FF00",
-  languette: "#FFFFFF",
-  lacet: "#00FF00",
-  trimestre: "#FFFFFF",
-},
+import Id from "../quartiers/edit/[[id]].vue";
+import { supabase } from "@/supabase";
+console.log("supabase :", supabase);
 
- {
-  semelle: "#00FF00",
-  empeigne: "#F00FFF",
-  pointe: "#FF00FF",
-  oeillet: "#FFFFFF",
-  bande: "#00FF00",
-  languette: "#FFFFFF",
-  lacet: "#0000FF",
-  trimestre: "#0FFFFF",
-},
-];
+
+
+const { data:lesBaskets, error } = await supabase
+  .from('Basket')
+  .select('*') ;
+
 </script>
 
 <template>
@@ -33,12 +20,13 @@ const exemples: Basket[] =[
     <div class="flex flex-wrap gap-2">
       <div class="w-64">
         <RouterLink
+          v-for="uneBasket in lesBaskets" v-bind:key="uneBasket.id"
           :to="{
-            name: '/basket/exemple/[data]',
-            params: { data: JSON.stringify(exemples) },
+            name: '/basket/edit/[id]',
+            params: { id: uneBasket.id },
           }"
         >
-          <BasketProfil class="w-64" v-for="exemple in exemples" v-bind:key="trimestre" v-bind="exemple"/>
+          <BasketProfil class="w-64" v-bind="uneBasket"/>
         </RouterLink>
       </div>
     </div>

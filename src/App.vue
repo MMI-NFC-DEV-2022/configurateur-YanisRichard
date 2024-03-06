@@ -13,7 +13,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/login">login</RouterLink>
       <RouterLink to="/quartiers">Quartiers</RouterLink>
       <RouterLink to="/quartiers/edit/[[id]]">Formulaire Quartier</RouterLink> -->
-      <RouterLink to="/basket/index.vue">Index</RouterLink>
+      <RouterLink to="/basket">Index</RouterLink>
       <RouterLink to="/formchaussure">FormChaussure</RouterLink>
 
     </nav>
