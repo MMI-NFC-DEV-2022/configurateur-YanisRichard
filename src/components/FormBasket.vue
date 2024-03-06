@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { ChaussureSvg } from '@/types-svg';
+import type { Basket } from '@/types';
 import { ref } from 'vue';
-import SvgProfil from './SvgProfil.vue';
-import SvgDessus from './SvgDessus.vue';
+import SvgProfil from './BasketProfil.vue';
+import SvgDessus from './BasketDessus.vue';
 
 const props = defineProps<{
-  data?: ChaussureSvg;
+  data?: Basket;
   id?: string;
 }>();
 
-const chaussure = ref<ChaussureSvg>(props.data ?? {});
+const chaussure = ref<Basket>(props.data ?? {});
 </script>
 
 <template>
@@ -34,4 +34,4 @@ const chaussure = ref<ChaussureSvg>(props.data ?? {});
         <FormKit name="trimestre" label="trimestre" value="#FFFFFF" type="color" />
     </FormKit>
 
-</template>
+</template>./BasketProfil.vue@/types

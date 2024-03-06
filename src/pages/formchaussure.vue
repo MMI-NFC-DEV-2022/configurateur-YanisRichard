@@ -1,14 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import SvgProfil from '@/components/SvgProfil.vue';
-import SvgDessus from '@/components/SvgDessus.vue';
-import FormSvg from '@/components/FormSvg.vue';
+import FormBasket from '@/components/FormBasket.vue';
+import FormImages from '@/components/FormImages.vue';
 
 </script>
 
 <template>
 
-  <FormSvg />
-
+  <FormBasket />
+  <FormImages />
   
 </template>
