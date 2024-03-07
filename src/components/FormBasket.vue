@@ -47,6 +47,7 @@ if (props.id !== undefined) {
         <SvgProfil class="carousel-item w-64" v-bind="chaussure" id="profil" />
         <SvgDessus class="carousel-item w-64" v-bind="chaussure" id="dessus" />        
     </div>
+
     <FormKit type="form" v-model="chaussure">
         <FormKit name="semelle" 
                  label="semelle" 
@@ -207,13 +208,11 @@ if (props.id !== undefined) {
         value="Cuir"
         type="select"
         :options="materiaux"
-        ></FormKit>
-        <FormKit 
-            type="form" 
-            v-model="basket"
-            :submit-attrs="{ classes: { input: 'bg-red-300 p-1 rounded' } }"
-            @submit="upsertBasket"
         >
-    </FormKit>
+        </FormKit>
+        <FormKit type="form" v-model="chaussure" @submit="upsertBasket"/>
+        </FormKit>
 
-</template>./BasketProfil.vue@/types
+      
+
+</template>
