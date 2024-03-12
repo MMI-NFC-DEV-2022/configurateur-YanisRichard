@@ -15,23 +15,31 @@ const props = defineProps<{
 const chaussure = ref<Basket>(props.data ?? {});
 
 async function upsertBasket(dataForm, node) {
- const { data, error } = await supabase.from("Basket").upsert(dataForm).select("id");
- if (error) node.setErrors([error.message])
- else {
-console.log("data : ", data)}
+    console.log({dataForm});
+    
+    console.log("OK ici pq ?");
+    const { data, error } = await supabase.from("Basket").upsert(dataForm).select('id').single();
+    console.log("jamais ici pq ?");
+    
+    console.log({data, error});
+    
+    if (error) node.setErrors([error.message])
+    else {
+         console.log("data : ", data)
+    }
 }
 
 if (props.id !== undefined) {
     console.log(props.id);
     if (route.params.id) {
- // On charge les données de la basket
- let { data, error } = await supabase
- .from("Basket")
- .select("*")
- .eq("id", route.params.id);
- if (error) console.log("n'a pas pu charger la table Basket :", error);
- else chaussure.value = (data as any[])[0];
-}
+    // On charge les données de la basket
+        let { data, error } = await supabase
+                                        .from("Basket")
+                                        .select("*")
+                                        .eq("id", route.params.id);
+        if (error) console.log("n'a pas pu charger la table Basket :", error);
+        else chaussure.value = (data as any[])[0];
+    }
 }
 
 </script>
@@ -48,7 +56,11 @@ if (props.id !== undefined) {
         <SvgDessus class="carousel-item w-64" v-bind="chaussure" id="dessus" />        
     </div>
 
-    <FormKit type="form" v-model="chaussure">
+    <FormKit
+         type="form"
+          v-model="chaussure" 
+           @submit="upsertBasket"
+    >
         <FormKit name="semelle" 
                  label="semelle" 
                  value="#FFFFFF" 
@@ -210,7 +222,7 @@ if (props.id !== undefined) {
         :options="materiaux"
         >
         </FormKit>
-        <FormKit type="form" v-model="chaussure" @submit="upsertBasket"/>
+ 
         </FormKit>
 
       
